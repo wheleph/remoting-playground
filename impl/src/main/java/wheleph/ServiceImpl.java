@@ -1,8 +1,8 @@
 package wheleph;
 
 public class ServiceImpl implements Service {
-    private static int CODE_THROW_KNOWN_EXCEPTION = 1;
-    private static int CODE_THROW_UNKNOWN_EXCEPTION = 2;
+    private final static int CODE_THROW_KNOWN_EXCEPTION = 1;
+    private final static int CODE_THROW_UNKNOWN_EXCEPTION = 2;
 
     @Override
     public int execute(int code) {
