@@ -12,6 +12,7 @@
         <module>api</module>
         <module>impl</module>
         <module>camel-server</module>
+        <module>camel-client</module>
     </modules>
 
 </project>
