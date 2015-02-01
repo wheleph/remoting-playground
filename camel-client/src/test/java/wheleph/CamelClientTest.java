@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import static wheleph.Service.*;
+
 public class CamelClientTest extends CamelSpringTestSupport {
     @Override
     protected AbstractApplicationContext createApplicationContext() {
@@ -16,18 +18,18 @@ public class CamelClientTest extends CamelSpringTestSupport {
     public void testNormal() {
         Service service = context.getRegistry().lookupByNameAndType("serviceProxy", Service.class);
 
-        Assert.assertEquals(10, service.execute(0));
+        Assert.assertEquals(10, service.execute(CODE_SUCCESS));
     }
 
     @Test(expected = IllegalStateException.class)
     public void testKnownException() {
         Service service = context.getRegistry().lookupByNameAndType("serviceProxy", Service.class);
-        service.execute(1);
+        service.execute(CODE_THROW_KNOWN_EXCEPTION);
     }
 
     @Test(expected = Exception.class)
     public void testUnknownException() {
         Service service = context.getRegistry().lookupByNameAndType("serviceProxy", Service.class);
-        service.execute(2);
+        service.execute(CODE_THROW_UNKNOWN_EXCEPTION);
     }
 }
