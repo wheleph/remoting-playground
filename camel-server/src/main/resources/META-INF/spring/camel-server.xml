@@ -8,13 +8,21 @@
 
     <bean id="serviceImpl" class="wheleph.ServiceImpl"/>
 
+    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="tcp://localhost:61616"/>
+            </bean>
+        </property>
+    </bean>
+
     <!-- the camel server -->
     <camelContext id="camelServer" xmlns="http://camel.apache.org/schema/spring">
 
         <export id="serviceImplExporter"
                 serviceInterface="wheleph.Service"
                 serviceRef="serviceImpl"
-                uri="activemq:queue:service?requestTimeout=60000&amp;transferException=true" />
+                uri="jms:queue:service?requestTimeout=60000&amp;transferException=true" />
 
     </camelContext>
 
