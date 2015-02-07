@@ -10,10 +10,12 @@
 
     <!-- the camel server -->
     <camelContext id="camelServer" xmlns="http://camel.apache.org/schema/spring">
-        <route>
-            <from uri="activemq:queue:service?transferException=true"/>
-            <to uri="bean:serviceImpl"/>
-        </route>
+
+        <export id="serviceImplExporter"
+                serviceInterface="wheleph.Service"
+                serviceRef="serviceImpl"
+                uri="activemq:queue:service?requestTimeout=60000&amp;transferException=true" />
+
     </camelContext>
 
 </beans>
