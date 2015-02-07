@@ -6,13 +6,13 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <bean id="serverImpl" class="wheleph.ServiceImpl"/>
+    <bean id="serviceImpl" class="wheleph.ServiceImpl"/>
 
     <!-- the camel server -->
     <camelContext id="camelServer" xmlns="http://camel.apache.org/schema/spring">
         <route>
             <from uri="activemq:queue:service?transferException=true"/>
-            <to uri="bean:serverImpl"/>
+            <to uri="bean:serviceImpl"/>
         </route>
     </camelContext>
 
